@@ -2,11 +2,19 @@
 document.addEventListener('DOMContentLoaded', function () {
   // code here will execute after the document is loaded
   const searchButton = document.getElementById('search-button');
+  const moviesContainer = document.querySelector('.movies-container');
 
   searchButton.addEventListener('click', (e) => {
     e.preventDefault();
-    const moviesContainer = document.querySelector('.movies-container');
-    moviesContainer.innerHTML = renderMovies(movieData);
+    const searchString = document.querySelector('.search-bar').value;
+    const urlEncodedSearchString = encodeURIComponent(searchString);
+    fetch('http://www.omdbapi.com/?apikey=59354c85&s=' + urlEncodedSearchString)
+      .then((response) => { return response.json(); })
+      .then((data) => {
+        const movieHTML = renderMovies(data.Search);
+        moviesContainer.innerHTML = movieHTML;
+        movieData = data.Search; // why does this work?
+      })
 
     moviesContainer.addEventListener('click', (e) => {
       // console.log(e.target.tagName);
@@ -17,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     })
   })
+});
 
   function renderMovies(movieArray) {
     const movieHtmlArray = movieArray.map(function (currentMovie) {
@@ -34,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
     return movieHtmlArray.join(''); //Why do we need this? Because HTML can only read strings, and the above is JS. So you need the .join('') to convert to a string.
   }
 
-});
+
 
 function saveToWatchlist(movieID) {
-  const movie = movieData.find((currentMovie) => {
+  const movie = movieData.find((currentMovie) => { // See movieData = data.Search above
     return currentMovie.imdbID == movieID;
   });
   let watchlistJSON = localStorage.getItem('watchlist');
@@ -50,3 +59,4 @@ function saveToWatchlist(movieID) {
   watchlistJSON = JSON.stringify(watchlist);
   localStorage.setItem('watchlist', watchlistJSON);
 }
+
