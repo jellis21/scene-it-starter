@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" id="container">
     <div class="row">
       <div class="col-12 header text-center">
         <h2 class="display-2">Scene It Watchlist</h2>
@@ -19,35 +19,22 @@
         <p>Save them to your list</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 search">
-        <form id="search-form">
-          <div class="input-group input-group-lg">
-            <input class="form-control search-bar"
-              placeholder="Search for a movie..." />
-            <button class="btn btn-warning input-group-btn" id="search-button"
-              type="submit">
-              Search
-            </button>
-          </div>
-        </form>
-      </div>
+    <div class="d-flex justify-content-center">
+      <a href="index.html" class="add-button btn btn-warning mr-4">Home</a>
+      <button type="button" class="btn btn-warning" id="clear-watchlist">Clear Watchlist</button>
     </div>
-    <div class="row">
-      <div class="col-12">
-        <a href="./watchlist.html" class="btn-warning p-1 go-to-watchlist">Go to
-          Watchlist</a>
-      </div>
-      <div>
-        <a href="index.html" class="btn-warning p-1">Home</a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 results">
-        <!-- MOVIES SHOW UP HERE! -->
 
-        <div class="movies-container row">
-          <!-- <div class="movie col p-3">
+    <!-- <div>
+      <a href="#" class="add-button btn btn-warning d-block mx-auto mt-2">Clear Watchlist</a>
+    </div> -->
+
+  </div>
+  <div class="row">
+    <div class="col-12 results">
+      <!-- MOVIES SHOW UP HERE! -->
+
+      <div class="movies-container row">
+        <!-- <div class="movie col p-3">
               <div class="card bg-secondary text-light" style="width: 18rem;">
                 <img src="no_image.png" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -60,12 +47,9 @@
               </div>
               </div> -->
 
-
-        </div>
-
-
       </div>
     </div>
+  </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -81,7 +65,7 @@
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="data.js"></script>
-  <script src="index.js"></script>
+  <!-- <script src="index.js"></script>  -->
   <script src="watchlist.js"></script>
 </body>
 

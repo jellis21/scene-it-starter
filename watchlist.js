@@ -3,20 +3,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let watchlistJSON = localStorage.getItem('watchlist');
   console.log(watchlistJSON);
-  
+
   let watchlist = JSON.parse(watchlistJSON);
   console.log(watchlist);
- 
+
   const moviesContainer = document.querySelector('.movies-container');
 
   moviesContainer.innerHTML = renderMovies(watchlist)
 
+  // Event listener to clear the watchlist  
+  const clearWatchlist = document.getElementById('clear-watchlist');
+
+  clearWatchlist.addEventListener('click', () => {
+    localStorage.clear();
+    moviesContainer.innerHTML = '<div></div>'
+    const container = document.getElementById('container');
+    const newDiv = document.createElement('div');
+    newDiv.classList = 'row'
+    newDiv.innerHTML = `<div class="col-12 header mt-4 text-center">
+      <p><strong>You need to add some movies!</strong></p>
+    </div>`
+    container.append(newDiv);
+  })
+
 })
+
+
 
 function renderMovies(movieArray) {
 
+  // "If" statement for if there's nothing in the watchlist
   if (movieArray == null) {
-    return `<p>Your watchlist needs some movies!</p>`
+    const container = document.getElementById('container');
+    const newDiv = document.createElement('div');
+    newDiv.classList = 'row'
+    newDiv.innerHTML = `<div class="col-12 header mt-4 text-center">
+      <p><strong>You need to add some movies!</strong></p>
+    </div>`
+    container.append(newDiv);
   }
 
   const movieHtmlArray = movieArray.map(function (currentMovie) {
