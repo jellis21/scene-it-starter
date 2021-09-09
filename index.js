@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // console.log(e.target.tagName);
       e.preventDefault();
       if (e.target.classList.contains('add-button')) {
-        const movieID = e.target.dataset.imdbid; 
+        const movieID = e.target.dataset.imdbid;
         saveToWatchlist(movieID);
       }
     })
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="card-body">
     <h5 class="card-title">${currentMovie.Title}</h5>
     <p class="card-text">${currentMovie.Year}</p>
-    <a href="#" class="add-button btn btn-warning text" data-imdbid=${currentMovie.imdbID}>Go somewhere</a>
+    <a href="#" class="add-button btn btn-warning text" data-imdbid=${currentMovie.imdbID}>Add to Watchlist</a>
   </div>
 </div>
 </div>`
